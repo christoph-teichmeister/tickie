@@ -16,14 +16,14 @@
     </thead>
     <tbody>
     {% for event in event_list %}
-      <tr>
+      <tr class="align-middle">
         <th scope="row">{{ event.id }}</th>
         <td>{{ event.name }}</td>
         <td>
           <div class="float-end">
             <button type="button"
                     class="btn btn-secondary"
-                    hx-get="{% url "guest:list" %}"
+                    hx-get="{% url "guest:list" event_id=event.id %}"
                     hx-target="body"
                     hx-push-url="true">
               {% translate "to Guest List" %}

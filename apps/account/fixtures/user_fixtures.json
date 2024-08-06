@@ -4,15 +4,57 @@
     "pk": 1,
     "fields": {
       "password": "argon2$argon2id$v=19$m=102400,t=2,p=8$NGdOVndEMjc3UjFXcm5uTWxWekRNYQ$s+jXIWx0uKhfI08xSqy6tnAw9MzdXsRYp2n9Idgt6BI",
-      "last_login": "2024-08-06T16:14:40Z",
+      "last_login": "2024-08-06T19:41:42Z",
       "is_superuser": true,
       "is_staff": true,
       "is_active": true,
       "date_joined": "2024-08-06T16:13:04Z",
       "name": "Admin Superuser Tickie",
       "email": "admin-superuser@tickie.local",
+      "role": 0,
       "groups": [],
-      "user_permissions": []
+      "user_permissions": [],
+      "works_for_events": []
+    }
+  },
+  {
+    "model": "account.user",
+    "pk": 2,
+    "fields": {
+      "password": "argon2$argon2id$v=19$m=102400,t=2,p=8$NGdOVndEMjc3UjFXcm5uTWxWekRNYQ$s+jXIWx0uKhfI08xSqy6tnAw9MzdXsRYp2n9Idgt6BI",
+      "last_login": "2024-08-06T19:41:42Z",
+      "is_superuser": false,
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-08-06T16:13:04Z",
+      "name": "Security 1 (Oscarverleihung)",
+      "email": "sec-1-oscar@tickie.local",
+      "role": 1,
+      "groups": [],
+      "user_permissions": [],
+      "works_for_events": [
+        1
+      ]
+    }
+  },
+  {
+    "model": "account.user",
+    "pk": 3,
+    "fields": {
+      "password": "argon2$argon2id$v=19$m=102400,t=2,p=8$NGdOVndEMjc3UjFXcm5uTWxWekRNYQ$s+jXIWx0uKhfI08xSqy6tnAw9MzdXsRYp2n9Idgt6BI",
+      "last_login": "2024-08-06T19:41:42Z",
+      "is_superuser": false,
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-08-06T16:13:04Z",
+      "name": "Security 2 (Oscarverleihung)",
+      "email": "sec-2-oscar@tickie.local",
+      "role": 1,
+      "groups": [],
+      "user_permissions": [],
+      "works_for_events": [
+        1
+      ]
     }
   }
 ]

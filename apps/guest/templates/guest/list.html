@@ -5,14 +5,22 @@
   {% translate "Guests" %}
 {% endblock title %}
 
+{% block center_header_content %}
+  <div class="text-center">
+    <strong>{{ event_name }}</strong>
+  </div>
+{% endblock center_header_content %}
+
 {% block left_content %}
-  <button type="button"
-          class="btn btn-dark"
-          hx-get="{% url "event:list" %}"
-          hx-target="body"
-          hx-push-url="true">
-    {% translate "< Back to events" %}
-  </button>
+  {% if request.user.role != request.user.RoleChoices.CHECK_IN_SECURITY %}
+    <button type="button"
+            class="btn btn-dark"
+            hx-get="{% url "event:list" %}"
+            hx-target="body"
+            hx-push-url="true">
+      {% translate "< Back to events" %}
+    </button>
+  {% endif %}
 {% endblock left_content %}
 
 {% block center_content %}
@@ -24,7 +32,7 @@
     </thead>
     <tbody>
     {% for guest in guest_list %}
-      <tr>
+      <tr class="align-middle">
         <td>{{ guest.email }}</td>
         <td>
           <div class="float-end">

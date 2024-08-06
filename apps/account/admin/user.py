@@ -14,21 +14,31 @@ class UserAdmin(auth_admin.UserAdmin):
     form = UserAdminChangeForm
     add_form = UserAdminCreateForm
     fieldsets = (
-        (None, {"fields": ("email", "password")}),
-        (_("Personal info"), {"fields": ("name",)}),
+        (
+            None,
+            {"fields": ("email", "password")},
+        ),
+        (
+            _("Personal info"),
+            {"fields": ("name", "works_for_events")},
+        ),
         (
             _("Permissions"),
             {
                 "fields": (
+                    "role",
                     "is_active",
                     "is_staff",
                     "is_superuser",
                 ),
             },
         ),
-        (_("Important dates"), {"fields": ("last_login", "date_joined")}),
+        (
+            _("Important dates"),
+            {"fields": ("last_login", "date_joined")},
+        ),
     )
-    list_display = ("email", "name", "is_superuser")
+    list_display = ("email", "name", "role", "is_superuser", "is_superuser")
     search_fields = ("name",)
     ordering = ("id",)
     add_fieldsets = (
