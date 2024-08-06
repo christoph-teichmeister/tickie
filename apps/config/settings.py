@@ -62,7 +62,7 @@ DEBUG = env("DJANGO_DEBUG")
 # In Windows, this must be set to your system time zone.
 TIME_ZONE = "Europe/Berlin"
 # https://docs.djangoproject.com/en/dev/ref/settings/#language-code
-LANGUAGE_CODE = "en-en"
+LANGUAGE_CODE = "en-GB"
 # https://docs.djangoproject.com/en/dev/ref/settings/#languages
 # from django.utils.translation import gettext_lazy as _
 # LANGUAGES = [
@@ -153,9 +153,7 @@ PASSWORD_HASHERS = [
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#auth-password-validators
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"
-    },
+    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
     {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
     {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
@@ -348,9 +346,7 @@ if env("DJANGO_ENVIRONMENT") == "development":
 # ------------------------------------------------------------------------------
 # Use X-Forwarded-Proto Header to determine SSL status (useful for API docs)
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
-SECURE_SSL_REDIRECT = (
-    False
-)  # HTTP to HTTPS redirection will be done at load balancer level.
+SECURE_SSL_REDIRECT = False  # HTTP to HTTPS redirection will be done at load balancer level.
 CSRF_COOKIE_SECURE = SESSION_COOKIE_SECURE = env("DJANGO_SESSION_COOKIE_SECURE")
 SECURE_BROWSER_XSS_FILTER = SECURE_CONTENT_TYPE_NOSNIFF = True
 
