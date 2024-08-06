@@ -13,17 +13,17 @@ services:
     restart: "always"
 
   backend:
-    env_file: backend/docker-compose.env
+    env_file: docker-compose.env
     depends_on:
       - database
     build:
-      context: ./backend
+      context: .
       args:
         ADDITIONAL_PIPENV_INSTALL_ARGS: "--dev"
     container_name: tickie-backend
     command: bash ./scripts/run_backend_local.sh
     volumes:
-      - ./backend:/src
+      - .:/src
       # do not mount this folder (because you need the files, and you do not want to run collectstatic manually):
       - /src/static
     ports:

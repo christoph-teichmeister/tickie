@@ -1,0 +1,48 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+ambient-toolbox = "==11.*"                                  # https://ambient-toolbox.readthedocs.io/en/latest/features/changelog.html
+django = {extras = ["argon2"], version = "==5.*" }          # https://docs.djangoproject.com/en/5.0/releases/
+django-axes = "~=6.5"                                # Bruteforce protection
+django-browser-reload = "==1.*"                             # https://github.com/adamchainz/django-browser-reload/blob/main/CHANGELOG.rst
+django-cloudinary-storage = "==0.*"                         # https://github.com/klis87/django-cloudinary-storage/releases
+django-components = "==0.*"                                 # https://github.com/EmilStenstrom/django-components/?tab=readme-ov-file#release-notes
+django-components-preprocessor = "==0.*"                    # https://pypi.org/project/django-components-preprocessor/#history
+django-context-decorator = "==1.*"                          # https://github.com/rixx/django-context-decorator/tags
+django-environ = "==0.*"                                    # https://django-environ.readthedocs.io/en/latest/changelog.html
+django-extensions = "==3.*"                                 # https://github.com/django-extensions/django-extensions/blob/main/CHANGELOG.md
+django-health-check = "~=3.18"                       # Health checking
+django-pony-express = "==2.*"                               # https://django-pony-express.readthedocs.io/en/latest/features/changelog.html
+freezegun = "==1.*"                                         # https://github.com/spulec/freezegun/blob/master/CHANGELOG
+gunicorn = "==22.*"                                         # https://docs.gunicorn.org/en/stable/news.html
+kolo = "==2.*"                                              # https://docs.kolo.app/en/latest/python-changelog.html
+model-bakery = "==1.*"                                      # https://github.com/model-bakers/model_bakery/releases
+pillow = "==10.*"                                           # https://github.com/python-pillow/Pillow/blob/main/CHANGES.rst
+psycopg2-binary = "==2.*"                                   # https://github.com/psycopg/psycopg2/tags
+pywebpush = "==2.*"                                         # https://github.com/web-push-libs/pywebpush/releases
+sentry-sdk = {extras = ["django"], version = "==2.*"}       # https://github.com/getsentry/sentry-python/blob/master/CHANGELOG.md
+uvicorn = "~=0.30"                                   # asgi webserver
+whitenoise = "==6.*"                                        # https://whitenoise.readthedocs.io/en/stable/changelog.html
+
+[dev-packages]
+# The requirements used in development get all updates quickly, because we assume that possible problems are noticed
+# when working on the project. Updates are still done with explicit commands that lock the versions at that point in
+# time.
+django-debug-toolbar = "*"                                  # debugging
+django-extensions = "*"                                     # https://github.com/django-extensions/django-extensions
+django-upgrade = "*"                                        # https://github.com/adamchainz/django-upgrade/blob/main/CHANGELOG.rst
+djlint = "*"                                                # https://github.com/djlint/djLint/releases
+factory_boy = "*"                                           # factory for objects in tests
+freezegun = "*"                                             # allows tests with timestamps
+ipython = "*"                                               # much better interactive shell
+pytest = "*"                                                # testing in django
+pytest-cov = "*"                                            # adds coverage for pytest
+pytest-django = "*"                                         # adds support for django to pytest
+pytest-mock = "*"                                           # adds support for mocking to pytest
+ruff = "*"                                                  # https://github.com/astral-sh/ruff/blob/main/CHANGELOG.md
+
+[requires]
+python_version = "3.11.9"  # Fixed version from onrender.com (If you change this, also change it in the Dockerfile!)

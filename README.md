@@ -2,47 +2,61 @@
 
 Organise events fast and efficiently
 
-# README
-
-This generic `README.md` is a starting point. You might find further details in subfolder, e.g. for
-the [backend](backend/README.md).
-
 ## Where to start?
 
-The application can be run in Docker:
+If you need a quickstart, please look at `pyproject.toml` first. It includes configuration of most tools. Secondly, you
+should look into `Dockerfile` and `Pipfile`.
+
+## Linting and formatting
+
+This project Ruff for code formatting and linting, an extremely fast tool, to ensure consistent and clean code.
+
+To format your code using **Ruff**, run:
+
 ```bash
-# build first:
-docker-compose build
-
-# run application:
-docker-compose up
-
-# destroy application:
-docker-compose down -v
+ruff format .
 ```
 
-To verify all parts work, you can use those steps:
+To lint your code using **Ruff**, run:
 
+```bash
+ruff check .
+```
+
+or use it in watch mode
+
+```bash
+ruff check . --watch  # Automatically re-run on file changes
+```
+
+Furthermore we use DjHTML to lint our Django templates. To lint your templates using **DjHTML**, run:
+
+```bash
+djhtml .
+```
+
+## Environments and `.env`
+
+There are multiple environment files to make the project usable in different scenarios:
+- `development.env`:  This is the file with all settings to develop **locally** and is used with and without Docker.
+- `unittest.env`:  This is the file with all settings to speed up tests. It's used for pytest.
+- `docker-compose.env`:  This file is only used by Docker Compose for development with Docker.
+- `.env`: There is no `.env` file because the defaults for all settings are defined in the settings-file and thy only
+  need to be changed in the cases above (or in the Helm Chart for production usage). 
+
+## Installing or updating packages with pipenv
+
+The easiest option – as long as you do not have any special things going on – is to run `pipenv` locally:
 ```shell
-# Firstly, exec into the Docker container.
-# To send an email to the given address, run:
-./manage.py verify_mail recipient@example.com
-# To create a user, run:
-./manage.py createsuperuser
+pipenv update
 ```
 
-This user can login in /admin now and navigate to a user profile to upload a profile picture. This verifies that the
-storage backend is also configured correctly (e.g. S3 bucket).
-
-## ADRs
-
-This project uses ADRs for all important decisions. Please read and update them in `/adrs/`.
-
-## Hosting & Infrastructure
-
-The infrastructure and its cost are described [here](infrastructure/HOSTING.md).
-
-## Editorconfig
-
-Please install a plugin for your IDE for [Editorconfig](https://editorconfig.org). This avoids different charsets, line
-breaks etc. throughout the project.
+If you need to run it in Docker, this can be done like that:
+```shell
+docker exec -it tickie-backend bash
+pip install pipenv
+    Installing collected packages: pipenv
+      WARNING: The scripts pipenv and pipenv-resolver are installed in '/src/.local/bin' which is not on PATH.
+      Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+/src/.local/bin/pipenv update
+```
