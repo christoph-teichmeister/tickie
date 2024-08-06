@@ -22,16 +22,14 @@ class UserAdmin(auth_admin.UserAdmin):
                     "is_active",
                     "is_staff",
                     "is_superuser",
-                    "groups",
-                    "user_permissions",
                 ),
             },
         ),
         (_("Important dates"), {"fields": ("last_login", "date_joined")}),
     )
-    list_display = ["email", "name", "is_superuser"]
-    search_fields = ["name"]
-    ordering = ["id"]
+    list_display = ("email", "name", "is_superuser")
+    search_fields = ("name",)
+    ordering = ("id",)
     add_fieldsets = (
         (
             None,
