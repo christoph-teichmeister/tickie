@@ -118,10 +118,10 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
-    # "apps.config",
     "apps.account",
     "apps.core",
-    # Your stuff: custom apps go here
+    "apps.event",
+    "apps.guest",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -288,7 +288,7 @@ if "pytest" in sys.modules:
     }
 
     # We want templates to show useful errors even when DEBUG is set to False:
-    TEMPLATES[0]["OPTIONS"]["debug"] = True  # type: ignore[index]
+    TEMPLATES[0]["OPTIONS"]["debug"] = True
 
     MEDIA_URL = "http://media.testserver"
 
