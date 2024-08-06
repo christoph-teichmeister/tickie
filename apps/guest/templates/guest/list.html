@@ -1,0 +1,42 @@
+{% extends "layouts/default_layout.html" %}
+{% load i18n %}
+
+{% block title %}
+  {% translate "Guests" %}
+{% endblock title %}
+
+{% block left_content %}
+  <button type="button"
+          class="btn btn-dark"
+          hx-get="{% url "event:list" %}"
+          hx-target="body"
+          hx-push-url="true">
+    {% translate "< Back to events" %}
+  </button>
+{% endblock left_content %}
+
+{% block center_content %}
+  <table class="table table-striped table-hover">
+    <thead>
+    <tr>
+      <th scope="col">{% translate "E-Mail" %}</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for guest in guest_list %}
+      <tr>
+        <td>{{ guest.email }}</td>
+        <td>
+          <div class="float-end">
+            <button type="button"
+                    class="btn btn-success">
+              {% translate "Check In" %}
+            </button>
+          </div>
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock center_content %}

@@ -1,6 +1,7 @@
 from ambient_toolbox.view_layer.views import RequestInFormKwargsMixin
 from django.contrib.auth import login
 from django.http import HttpResponseRedirect
+from django.urls import reverse_lazy
 from django.views import generic
 
 from apps.account.forms.login import LoginForm
@@ -9,8 +10,7 @@ from apps.account.forms.login import LoginForm
 class LoginView(RequestInFormKwargsMixin, generic.FormView):
     template_name = "account/login.html"
     form_class = LoginForm
-    # success_url = reverse_lazy("account:dashboard")
-    success_url = "-"
+    success_url = reverse_lazy("event:list")
 
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated:

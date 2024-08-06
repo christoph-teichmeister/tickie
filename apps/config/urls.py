@@ -10,6 +10,8 @@ urlpatterns = [
     # Default url: Login view
     path("", RedirectView.as_view(pattern_name="account:login")),
     path("account/", include("apps.account.urls", namespace="account")),
+    path("event/", include("apps.event.urls", namespace="event")),
+    path("guest/", include("apps.guest.urls", namespace="guest")),
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
     # Your stuff: custom urls includes go here
