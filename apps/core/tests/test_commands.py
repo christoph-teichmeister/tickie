@@ -20,7 +20,7 @@ class TestVerifyMailCommand:
 
         # Mock send_mail to raise an exception
         mocker.patch(
-            "apps.common.management.commands.verify_mail.send_mail",
+            "apps.core.management.commands.verify_mail.send_mail",
             side_effect=Exception("SMTP error"),
         )
         with pytest.raises(SystemExit) as excinfo:
