@@ -3,7 +3,8 @@ from django.contrib.auth import admin as auth_admin
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 
-from apps.account.forms import UserAdminChangeForm, UserAdminCreationForm
+from apps.account.forms.admin.change import UserAdminChangeForm
+from apps.account.forms.admin.create import UserAdminCreateForm
 
 User = get_user_model()
 
@@ -11,7 +12,7 @@ User = get_user_model()
 @admin.register(User)
 class UserAdmin(auth_admin.UserAdmin):
     form = UserAdminChangeForm
-    add_form = UserAdminCreationForm
+    add_form = UserAdminCreateForm
     fieldsets = (
         (None, {"fields": ("email", "password")}),
         (_("Personal info"), {"fields": ("name",)}),

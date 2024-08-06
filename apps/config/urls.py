@@ -7,7 +7,9 @@ from django.views import defaults as default_views
 from django.views.generic import RedirectView
 
 urlpatterns = [
-    path("", RedirectView.as_view(pattern_name="admin:index")),
+    # Default url: Login view
+    path("", RedirectView.as_view(pattern_name="account:login")),
+    path("account/", include("apps.account.urls", namespace="account")),
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
     # Your stuff: custom urls includes go here
@@ -19,6 +21,7 @@ if settings.DEBUG:  # pragma: no cover
     # This allows the error pages to be debugged during development, just visit
     # these url in browser to see how these error pages look like.
     urlpatterns += [
+        path("__reload__/", include("django_browser_reload.urls")),
         path(
             "400/",
             default_views.bad_request,

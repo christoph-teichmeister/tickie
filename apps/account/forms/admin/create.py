@@ -6,13 +6,7 @@ from django.utils.translation import gettext_lazy as _
 User = get_user_model()
 
 
-class UserAdminChangeForm(admin_forms.UserChangeForm):
-    class Meta(admin_forms.UserChangeForm.Meta):
-        model = User
-        field_classes = {"email": EmailField}
-
-
-class UserAdminCreationForm(admin_forms.UserCreationForm):
+class UserAdminCreateForm(admin_forms.UserCreationForm):
     """
     Form for User Creation in the Admin Area.
     """

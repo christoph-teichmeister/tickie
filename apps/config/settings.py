@@ -104,13 +104,20 @@ DJANGO_APPS = [
     "django.contrib.sessions",
     "django.contrib.sites",
     "django.contrib.messages",
-    "django.contrib.staticfiles",
     "django.contrib.humanize",  # Handy template tags
     "django.forms",
 ]
 THIRD_PARTY_APPS = [
     "axes",
     "ambient_toolbox",
+    "django_components",
+    # https://pypi.org/project/django-components/
+    # This is a drop-in replacement for django.contrib.staticfiles.
+    # Its behavior is 100% identical except it ignores .py and .html files,
+    # meaning these will not end up on your static files server.
+    # To use it, add it to INSTALLED_APPS and remove django.contrib.staticfiles.
+    "django_components.safer_staticfiles",
+    "django_htmx",
     "health_check",  # required
     "health_check.db",  # stock Django health checkers
     "health_check.cache",
@@ -164,6 +171,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#middleware
 MIDDLEWARE = [
+    "kolo.middleware.KoloMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -171,8 +179,10 @@ MIDDLEWARE = [
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "ambient_toolbox.middleware.current_user.CurrentUserMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "django_browser_reload.middleware.BrowserReloadMiddleware",
     # AxesMiddleware should be the last middleware in the MIDDLEWARE list.
     "axes.middleware.AxesMiddleware",
 ]
