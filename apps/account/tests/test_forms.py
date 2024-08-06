@@ -4,7 +4,7 @@ Module for all Form Tests.
 
 from django.utils.translation import gettext_lazy as _
 
-from apps.account.forms import UserAdminCreationForm
+from apps.account.forms.admin.create import UserAdminCreateForm
 from apps.account.models import User
 
 
@@ -23,7 +23,7 @@ class TestUserAdminCreationForm:
 
         # The user already exists,
         # hence cannot be created.
-        form = UserAdminCreationForm(
+        form = UserAdminCreateForm(
             {
                 "email": user.email,
                 "password1": user.password,
