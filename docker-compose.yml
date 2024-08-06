@@ -1,0 +1,34 @@
+services:
+  database:
+    image: postgres:16-alpine
+    container_name: tickie-database
+    environment:
+      POSTGRES_DB: tickie
+      POSTGRES_USER: tickie-user
+      POSTGRES_PASSWORD: tickie-password
+    volumes:
+      - tickie_postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: "always"
+
+  backend:
+    env_file: backend/docker-compose.env
+    depends_on:
+      - database
+    build:
+      context: ./backend
+      args:
+        ADDITIONAL_PIPENV_INSTALL_ARGS: "--dev"
+    container_name: tickie-backend
+    command: bash ./scripts/run_backend_local.sh
+    volumes:
+      - ./backend:/src
+      # do not mount this folder (because you need the files, and you do not want to run collectstatic manually):
+      - /src/static
+    ports:
+      - "8000:8000"
+    restart: "no"
+
+volumes:
+  tickie_postgres_data:

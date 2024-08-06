@@ -1,0 +1,147 @@
+[tool.ruff]
+exclude = [
+  ".bzr",
+  ".direnv",
+  ".eggs",
+  ".git",
+  ".hg",
+  ".mypy_cache",
+  ".nox",
+  ".pants.d",
+  ".pytype",
+  ".ruff_cache",
+  ".svn",
+  ".tox",
+  ".venv",
+  "__pypackages__",
+  "_build",
+  "buck-out",
+  "build",
+  "dist",
+  "node_modules",
+  "venv",
+  "migrations",
+  "runners.py", # default from pytest-docs
+]
+
+line-length = 120
+
+# Assume Python 3.12.
+target-version = "py312"
+
+[tool.ruff.lint]
+select = [
+  "E", # pycodestyle errors
+  "W", # pycodestyle warnings
+  "F", # Pyflakes
+  "N", # pep8-naming
+  "I", # isort
+  "B", # flake8-bugbear
+  "A", # flake8-builtins
+  "DTZ", # flake8-datetimez
+  "DJ", # flake8-django
+  "RUF", # ruff-specific rules
+  "YTT", # Avoid non-future-prove usages of "sys"
+  "FBT", # Protects you from the "boolean trap bug"
+  "C4", # Checks for unnecessary conversions
+  "PIE", # Bunch of useful rules
+  "SIM", # Simplifies your code
+  "INT", # Validates your gettext translation strings
+  "PGH", # No all-purpose "# noqa" and eval validation
+  "UP", # PyUpgrade
+  "PL", # PyLint
+  "PERF", # PyLint
+]
+ignore = [
+  'N999', # Project name contains underscore, not fixable
+  'A003', # Django attributes shadow python builtins
+  'DJ001', # Django model text-based fields shouldn't be nullable
+  'DJ012', # Odd ordering of Django model methods
+  'RUF012', # Mutable class attributes should be annotated with `typing.ClassVa
+  'B007', # Loops with multiple variables have to be named with an underscore prefixr`
+  'SIM102', # Use a single `if` statement instead of nested `if` statements
+  'SIM105', # Use `contextlib.suppress(OSError)` instead of `try`-`except`-`pass`
+  'SIM108', # Use ternary operator instead of `if`-`else`-block
+  'SIM114', # Combine `if` branches using logical `or` operator
+  'SIM117', # Use a single `with` statement with multiple contexts instead of nested `with` statements
+  'SIM118', #  Use `field in field_dict` instead of `field in field_dict.keys()`
+]
+
+# Allow autofix for all enabled rules (when `--fix`) is provided.
+fixable = [
+  "E", # pycodestyle errors
+  "W", # pycodestyle warnings
+  "F", # Pyflakes
+  "N", # pep8-naming
+  "I", # isort
+  "B", # flake8-bugbear
+  "A", # flake8-builtins
+  "DTZ", # flake8-datetimez
+  "DJ", # flake8-django
+  "RUF", # ruff-specific rules
+  "YTT", # Avoid non-future-prove usages of "sys"
+  "FBT", # Protects you from the "boolean trap bug"
+  "C4", # Checks for unnecessary conversions
+  "PIE", # Bunch of useful rules
+  "SIM", # Simplifies your code
+  "INT", # Validates your gettext translation strings
+  "PGH", # No all-purpose "# noqa" and eval validation
+  "UP", # PyUpgrade
+  "PL", # PyLint
+  "PERF", # PyLint
+]
+unfixable = []
+
+# Allow unused variables when underscore-prefixed.
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+[tool.ruff.lint.per-file-ignores]
+"**/test_*.py" = [
+  # Allows "magic values" in tests instead of having to assign each value to a variable.
+  "PLR2004",
+]
+"**/urls.py" = [
+  "RUF005", # does not like default concatenation
+]
+
+[tool.mypy]
+plugins = [
+  "mypy_django_plugin.main",
+]
+ignore_missing_imports = "True"  # some external packages are not supported
+
+[tool.django-stubs]
+django_settings_module = "apps.config.settings"
+
+[tool.coverage.report]
+fail_under = 100
+exclude_also = [
+  "if typing.TYPE_CHECKING:",
+  "if TYPE_CHECKING:",
+]
+show_missing = "true"
+skip_empty = "true"
+
+[tool.coverage.run]
+branch = true
+include = [
+  "apps/*"
+]
+omit = [
+  "apps/config/settings.py"
+]
+
+
+# ==== pytest ====
+[tool.pytest.ini_options]
+addopts = "-v --tb=short"
+DJANGO_SETTINGS_MODULE = "apps.config.settings"
+python_files = "tests.py test_*.py *_tests.py"
+norecursedirs = [
+  ".tox",
+  ".git",
+  "*/migrations/*",
+  "*/static/*",
+  "docs",
+  "venv",
+]

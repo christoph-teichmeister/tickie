@@ -1,0 +1,41 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+# The requirements used in production systems get patch releases quickly. We accept the (low) risk of introducing bugs
+# with updated patch releases, because all important features are covered in tests. The benefit of closing
+# vulnerabilities is rated more important.
+ambient-toolbox = "~=10.1"                           # Several helpers
+django = {extras = ["argon2"], version = "~=4.2" }   # Django, including password hasher
+django-axes = "~=6.5"                                # Bruteforce protection
+django-cors-headers = "~=4.3"                        # Cross-Origin-Request headers
+django-environ = "~=0.11"                            # ENV vars for django settings
+django-health-check = "~=3.18"                       # Health checking
+django-pony-express = "~=2.1"                        # Email Service
+Pillow = "~=10.2"                                    # https://github.com/python-pillow/Pillow
+psycopg = {extras = ["binary"], version = "~=3.1" }  # Postgres connector including binaries
+python-slugify ="~=8.0"                              # https://github.com/un33k/python-slugify
+sentry-sdk = "~=2.5"                                 # bug tracking
+uvicorn = "~=0.30"                                   # asgi webserver
+whitenoise = "~=6.6"                                 # Static file serving
+
+[dev-packages]
+# The requirements used in development get all updates quickly, because we assume that possible problems are noticed
+# when working on the project. Updates are still done with explicit commands that lock the versions at that point in
+# time.
+django-debug-toolbar = "*"       # debugging
+django-extensions = "*"          # https://github.com/django-extensions/django-extensions
+djhtml = "*"                     # HTML template indenting
+factory_boy = "*"                # factory for objects in tests
+freezegun = "*"                  # allows tests with timestamps
+ipython = "*"                    # much better interactive shell
+pytest = "*"                     # testing in django
+pytest-cov = "*"                 # adds coverage for pytest
+pytest-django = "*"              # adds support for django to pytest
+pytest-mock = "*"                # adds support for mocking to pytest
+ruff = "*"                       # linting
+
+[requires]
+python_version = "3.12"

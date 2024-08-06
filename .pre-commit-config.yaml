@@ -1,0 +1,44 @@
+# you find the full empto-pre-commit-tools docu under:
+# https://pre-commit.com/
+
+repos:
+  - repo: https://github.com/charliermarsh/ruff-pre-commit
+    # Update ruff version as well in .gitlab-ci.yml
+    rev: v0.5.2
+    hooks:
+      # Run the formatter.
+      - id: ruff-format
+      # Run the linter.
+      - id: ruff
+        args: [--fix, --exit-non-zero-on-fix]
+
+  - repo: https://github.com/rtts/djhtml
+    rev: 3.0.6
+    hooks:
+      - id: djhtml
+
+  - repo: https://github.com/compilerla/conventional-pre-commit
+    rev: v3.3.0
+    hooks:
+      - id: conventional-pre-commit
+        stages: [commit-msg]
+        args: []
+
+  - repo: https://github.com/adamchainz/django-upgrade
+    rev: 1.19.0
+    hooks:
+      - id: django-upgrade
+        args: [--target-version, "4.2"]
+        language_version: python3.12
+        stages: [ push ]
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: no-commit-to-branch
+        args:
+          [
+            "--pattern",
+            '^^(?!(?:dependabot-.*)|(?:feature|hotfix|bugfix|refactor|merge)/[\w\d\-_#]+).*$',
+          ]
+        stages: [commit]
