@@ -119,6 +119,7 @@ THIRD_PARTY_APPS = [
 
 LOCAL_APPS = [
     "apps.account",
+    "apps.check_in",
     "apps.core",
     "apps.event",
     "apps.guest",
