@@ -10,7 +10,7 @@ class Guest(CommonInfo):
         ACCEPTED = 2, _("Accepted")
         DECLINED = 3, _("Declined")
 
-    email = models.EmailField(_("E-Mail"))
+    email = models.EmailField(_("Email"))
     status = models.SmallIntegerField(_("Status"), choices=StatusChoices.choices, default=StatusChoices.CREATED)
 
     event = models.ForeignKey(
