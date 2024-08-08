@@ -15,9 +15,11 @@ import socket
 import sys
 
 import environ
+from django.utils.translation import gettext_lazy as _
 
 CONFIG_DIR = environ.Path(__file__) - 1
-BASE_DIR = environ.Path(__file__) - 3
+APPS_DIR = environ.Path(__file__) - 2
+BASE_DIR = environ.Path(__file__) - 3  # /tickie (or /src in the docker container)
 
 
 env = environ.Env(
@@ -65,11 +67,10 @@ TIME_ZONE = "Europe/Berlin"
 LANGUAGE_CODE = "en-GB"
 # https://docs.djangoproject.com/en/dev/ref/settings/#languages
 # from django.utils.translation import gettext_lazy as _
-# LANGUAGES = [
-#     ('en', _('Englisch')),
-#     ('de', _('Deutsch')),
-#     ('fr-fr', _('Französisch')),
-# ]
+LANGUAGES = [
+    ("en", _("English")),
+    ("de", _("German")),
+]
 # https://docs.djangoproject.com/en/dev/ref/settings/#site-id
 SITE_ID = 1
 # https://docs.djangoproject.com/en/dev/ref/settings/#use-i18n
@@ -77,7 +78,7 @@ USE_I18N = True
 # https://docs.djangoproject.com/en/dev/ref/settings/#use-tz
 USE_TZ = True
 # https://docs.djangoproject.com/en/dev/ref/settings/#locale-paths
-LOCALE_PATHS = [str(BASE_DIR("locale"))]
+LOCALE_PATHS = [str(APPS_DIR("locale"))]
 
 # DATABASES
 # ------------------------------------------------------------------------------
@@ -104,13 +105,20 @@ DJANGO_APPS = [
     "django.contrib.sessions",
     "django.contrib.sites",
     "django.contrib.messages",
-    "django.contrib.staticfiles",
     "django.contrib.humanize",  # Handy template tags
     "django.forms",
 ]
 THIRD_PARTY_APPS = [
     "axes",
     "ambient_toolbox",
+    "django_components",
+    # https://pypi.org/project/django-components/
+    # This is a drop-in replacement for django.contrib.staticfiles.
+    # Its behavior is 100% identical except it ignores .py and .html files,
+    # meaning these will not end up on your static files server.
+    # To use it, add it to INSTALLED_APPS and remove django.contrib.staticfiles.
+    "django_components.safer_staticfiles",
+    "django_htmx",
     "health_check",  # required
     "health_check.db",  # stock Django health checkers
     "health_check.cache",
@@ -118,10 +126,11 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
-    # "apps.config",
     "apps.account",
+    "apps.check_in",
     "apps.core",
-    # Your stuff: custom apps go here
+    "apps.event",
+    "apps.guest",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -163,6 +172,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#middleware
 MIDDLEWARE = [
+    "kolo.middleware.KoloMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -170,8 +180,10 @@ MIDDLEWARE = [
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "ambient_toolbox.middleware.current_request.CurrentRequestMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "django_browser_reload.middleware.BrowserReloadMiddleware",
     # AxesMiddleware should be the last middleware in the MIDDLEWARE list.
     "axes.middleware.AxesMiddleware",
 ]
@@ -288,7 +300,7 @@ if "pytest" in sys.modules:
     }
 
     # We want templates to show useful errors even when DEBUG is set to False:
-    TEMPLATES[0]["OPTIONS"]["debug"] = True  # type: ignore[index]
+    TEMPLATES[0]["OPTIONS"]["debug"] = True
 
     MEDIA_URL = "http://media.testserver"
 
@@ -451,7 +463,6 @@ CSRF_TRUSTED_ORIGINS = [
     FRONTEND_URL,
     BACKEND_URL,
 ]
-
 
 # Axes config
 LOGIN_TIMEDELTA = 15 * 60

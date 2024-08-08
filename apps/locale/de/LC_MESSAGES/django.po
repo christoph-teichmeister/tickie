@@ -1,14 +1,7 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-20 12:27+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,19 +12,128 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "Personal info"
-msgstr ""
+msgstr "Persönliche Informationen"
 
 msgid "Permissions"
-msgstr ""
+msgstr "Berechtigungen"
 
 msgid "Important dates"
-msgstr ""
+msgstr "Wichtige Daten"
 
 msgid "Account"
-msgstr ""
+msgstr "Account"
 
-msgid "This username has already been taken."
-msgstr ""
+msgid "This email has already been taken."
+msgstr "Diese E-Mail ist bereits in Benutzung."
+
+msgid "Email"
+msgstr "E-Mail"
+
+msgid "Password"
+msgstr "Passwort"
+
+msgid "Invalid user and password combination."
+msgstr "Die Kombination aus E-Mail und Passwort ist ungültig."
+
+msgid "Tickie Administrator"
+msgstr "Tickie Administrator"
+
+msgid "Check In Security"
+msgstr "Check In Security"
 
 msgid "Name of user"
-msgstr ""
+msgstr "Name der User:in"
+
+msgid "Email address"
+msgstr "E-Mail Adresse"
+
+msgid "Role"
+msgstr "Rolle"
+
+msgid "Works for events"
+msgstr "Arbeitet für Events"
+
+msgid "Login"
+msgstr "Login"
+
+msgid "Ask one of the organisers for a password, if you do not have one"
+msgstr "Fragen Sie bei den Organisatoren für ein Passwort, falls Sie keines haben"
+
+msgid "Checked in at"
+msgstr "Eingecheckt um"
+
+msgid "Checked out at"
+msgstr "Ausgecheckt um"
+
+msgid "Event"
+msgstr "Event"
+
+msgid "Guest"
+msgstr "Gast"
+
+msgid "Check In"
+msgstr "Check In"
+
+msgid "Check Ins"
+msgstr "Check Ins"
+
+#, python-format
+msgid "%s: %s for %s"
+msgstr "%s: %s bei %s"
+
+msgid "The date of 'Checked in at' must be after the start date of the event"
+msgstr "Das Datum für 'Eingecheckt um' muss nach dem Startdatum des Events sein"
+
+msgid "Check out must happen after Check in"
+msgstr "Check-Out muss nach Check-In passieren"
+
+msgid "English"
+msgstr "Englisch"
+
+msgid "German"
+msgstr "Deutsch"
+
+msgid "Log out"
+msgstr "Abmelden"
+
+msgid "Name"
+msgstr "Name"
+
+msgid "Start date"
+msgstr "Startdatum"
+
+msgid "End date"
+msgstr "Enddatum"
+
+msgid "Events"
+msgstr "Events"
+
+msgid "ID"
+msgstr "ID"
+
+msgid "to Guest List"
+msgstr "Gäsetliste"
+
+msgid "Created"
+msgstr "Erstellt"
+
+msgid "Invited"
+msgstr "Eingeladen"
+
+msgid "Accepted"
+msgstr "Akzeptiert"
+
+msgid "Declined"
+msgstr "Abgelehnt"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "The event this guest belongs to"
+msgstr "Das Event zu dem dieser Gast gehört"
+
+msgid "Guests"
+msgstr "Gäste"
+
+msgid "< Back to events"
+msgstr "< Zurück zu den Events"

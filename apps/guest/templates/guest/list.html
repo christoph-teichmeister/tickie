@@ -1,0 +1,52 @@
+{% extends "layouts/default_layout.html" %}
+{% load i18n %}
+
+{% block title %}
+  {% translate "Guests" %}
+{% endblock title %}
+
+{% block center_header_content %}
+  <div class="text-center">
+    <strong>{{ event_name }}</strong>
+  </div>
+{% endblock center_header_content %}
+
+{% block left_content %}
+  {% if request.user.role != request.user.RoleChoices.CHECK_IN_SECURITY %}
+    <button type="button"
+            class="btn btn-dark"
+            hx-get="{% url "event:list" %}"
+            hx-target="body"
+            hx-push-url="true">
+      {% translate "< Back to events" %}
+    </button>
+  {% endif %}
+{% endblock left_content %}
+
+{% block center_content %}
+  <table class="table table-striped table-hover">
+    <thead>
+    <tr>
+      <th scope="col">{% translate "Email" %}</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for guest in guest_list %}
+      <tr class="align-middle">
+        <td>{{ guest.email }}</td>
+        <td>
+          <div class="float-end">
+            <button type="button"
+                    class="btn btn-success"
+                    disabled
+            >
+              {% translate "Check In" %}
+            </button>
+          </div>
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock center_content %}

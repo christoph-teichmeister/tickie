@@ -4,9 +4,6 @@ from django.conf import settings
 from django.utils import translation
 from django_pony_express.services.tests import EmailTestService
 
-import apps.account.tests.factories as account_factories
-from apps.account.models import User
-
 
 @pytest.hookimpl(hookwrapper=True)
 def pytest_runtestloop(session):
@@ -23,15 +20,6 @@ def pytest_runtestloop(session):
 @pytest.fixture(autouse=True)
 def media_storage(settings, tmpdir):
     settings.MEDIA_ROOT = tmpdir.strpath
-
-
-@pytest.fixture
-def user(db) -> User:
-    """
-    Returns a User with a valid Token.
-    """
-
-    return account_factories.UserFactory()
 
 
 @pytest.fixture

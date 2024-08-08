@@ -1,0 +1,49 @@
+{% extends "core/base.html" %}
+
+{% block layout %}
+  <div class="container vh-100">
+    {# FIXED HEADER #}
+    <div class="row vh-5">
+      <div class="col-12 text-center">
+        <p class="py-4">tickie</p>
+      </div>
+    </div>
+
+    {# FILLABLE HEADER #}
+    <div class="row vh-5">
+      <div class="col my-5">
+        {% block left_header_content %}
+        {% endblock left_header_content %}
+      </div>
+      <div class="col-6 my-5">
+        {% block center_header_content %}
+        {% endblock center_header_content %}
+      </div>
+      <div class="col my-5">
+        {% block right_header_content %}
+        {% endblock right_header_content %}
+      </div>
+    </div>
+
+    {# BODY #}
+    <div class="row vh-80">
+      <div class="col my-5">
+        {% block left_content %}
+        {% endblock left_content %}
+      </div>
+      <div class="col-6 my-5 align-self-center">
+        {% block center_content %}
+        {% endblock center_content %}
+      </div>
+      <div class="col my-5">
+      </div>
+    </div>
+
+    {# FOOTER #}
+    <div class="row vh-10">
+      {% block footer_content %}
+      {% endblock footer_content %}
+    </div>
+  </div>
+{% endblock layout %}
+

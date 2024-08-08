@@ -2,6 +2,13 @@
 
 Organise events fast and efficiently
 
+## onrender.com
+
+[web-service](https://dashboard.render.com/web/srv-cqqhr0jv2p9s73b81ktg)
+[database](https://dashboard.render.com/d/dpg-cqqihpo8fa8c73fj116g-a)
+
+[website](https://tickie-vvup.onrender.com)
+
 ## Where to start?
 
 If you need a quickstart, please look at `pyproject.toml` first. It includes configuration of most tools. Secondly, you
